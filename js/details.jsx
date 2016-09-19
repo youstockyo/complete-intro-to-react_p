@@ -3,7 +3,7 @@ const React = require('react');
 const Details = React.createClass({
   render () {
     return (
-      <div style={{textAlign: 'left'}} className='container'>
+      <div className='container'>
         <pre><code>
           {JSON.stringify(this.props.params, null, 4)}
         </code></pre>
