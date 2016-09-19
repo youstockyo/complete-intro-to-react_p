@@ -1,6 +1,7 @@
 const React = require('react');
 const ShowCard = require('./show-card.jsx');
 const { object } = React.PropTypes;
+const Header = require('./header.jsx');
 
 const Search = React.createClass({
   getInitialState () {
@@ -11,16 +12,17 @@ const Search = React.createClass({
   propTypes: {
     route: object
   },
-  handleSearchTermEvent (event) {
-    this.setState({ searchTerm: event.target.value })
+  handleSearchTermChange (searchTerm) {
+    this.setState({ searchTerm: searchTerm })
   },
   render () {
     return (
       <div className='container'>
-        <header className='header'>
-          <h1 className='brand'>svideo</h1>
-          <input value={this.state.searchTerm} onChange={this.handleSearchTermEvent} className='search-input' type='text' placeholer='Search' />
-         </header>
+        <Header
+          handleSearchTermChange={this.handleSearchTermChange}
+          searchTerm={this.state.searchTerm}
+          showSearch={true}
+        />
         <div className='shows'>
           {this.props.route.shows
             .filter((show) => `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
